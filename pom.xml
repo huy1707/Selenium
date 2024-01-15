@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>Sag</groupId>
+	<artifactId>4</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<selenium.version>4.4.0</selenium.version>
+		<junit.jupiter.version>5.9.2</junit.jupiter.version>
+		<io.rest-assured>4.4.0</io.rest-assured>
+		<mysql>8.0.23</mysql>
+		<allure.version>2.14.0</allure.version>
+		<allure.maven.version>2.10.0</allure.maven.version>
+		<io.qameta.allure>2.17.0</io.qameta.allure>
+		<org.slf4j>1.7.32</org.slf4j>
+		<maven-surefire-plugin>2.19.1</maven-surefire-plugin>
+		<junit-platform-surefire-provider>1.0.2</junit-platform-surefire-provider>
+		<allure.maven.version>2.10.0</allure.maven.version>
+		<allure.maven.reportversion>2.13.3</allure.maven.reportversion>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+	<dependencies>
+		<!-- more dependencies ... -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${io.rest-assured}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql}</version>
+		</dependency>
+		<!-- Allure JUnit 5 adapter -->
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-junit5</artifactId>
+			<version>${io.qameta.allure}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-plugin-api</artifactId>
+			<version>${allure.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${org.slf4j}</version>
+		</dependency>
+		<!-- more dependencies ... -->
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-surefire-provider</artifactId>
+						<version>${junit-platform-surefire-provider}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>${allure.maven.version}</version> <!-- Use the latest
+				version -->
+				<configuration>
+					<reportVersion>${allure.maven.reportversion}</reportVersion> <!--
+					Use the latest
+					version -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

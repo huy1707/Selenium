@@ -16,8 +16,7 @@
 		<org.slf4j>1.7.32</org.slf4j>
 		<maven-surefire-plugin>2.19.1</maven-surefire-plugin>
 		<junit-platform-surefire-provider>1.0.2</junit-platform-surefire-provider>
-		<allure.maven.version>2.10.0</allure.maven.version>
-		<allure.maven.reportversion>2.13.3</allure.maven.reportversion>
+		<allure.maven.reportversion>2.14.0</allure.maven.reportversion>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
@@ -59,6 +58,12 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>${org.slf4j}</version>
 		</dependency>
+		<dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-testng</artifactId>
+        <version>2.16.0</version> <!-- Use the latest version -->
+        <scope>test</scope>
+    </dependency>
 		<!-- more dependencies ... -->
 	</dependencies>
 	<build>
@@ -80,9 +85,9 @@
 				<version>${allure.maven.version}</version> <!-- Use the latest
 				version -->
 				<configuration>
-					<reportVersion>${allure.maven.reportversion}</reportVersion> <!--
-					Use the latest
-					version -->
+					<reportVersion>${allure.maven.reportversion}</reportVersion>
+					<resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>					
+                	<reportDirectory>${project.build.directory}/allure-reports</reportDirectory>
 				</configuration>
 			</plugin>
 		</plugins>

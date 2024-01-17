@@ -14,7 +14,7 @@
 		<allure.maven.version>2.10.0</allure.maven.version>
 		<io.qameta.allure>2.17.0</io.qameta.allure>
 		<org.slf4j>1.7.32</org.slf4j>
-		<maven-surefire-plugin>2.19.1</maven-surefire-plugin>
+		<maven-surefire-plugin>2.22.2</maven-surefire-plugin>
 		<junit-platform-surefire-provider>1.0.2</junit-platform-surefire-provider>
 		<allure.maven.reportversion>2.14.0</allure.maven.reportversion>
 		<maven.compiler.source>1.8</maven.compiler.source>

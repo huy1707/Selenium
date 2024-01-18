@@ -12,13 +12,15 @@
 		<mysql>8.0.23</mysql>
 		<allure.version>2.14.0</allure.version>
 		<allure.maven.version>2.10.0</allure.maven.version>
-		<io.qameta.allure>2.17.0</io.qameta.allure>
+		<io.qameta.allure>2.14.0</io.qameta.allure>
 		<org.slf4j>1.7.32</org.slf4j>
-		<maven-surefire-plugin>2.22.2</maven-surefire-plugin>
+		<maven-surefire-plugin>2.19.1</maven-surefire-plugin>
 		<junit-platform-surefire-provider>1.0.2</junit-platform-surefire-provider>
 		<allure.maven.reportversion>2.14.0</allure.maven.reportversion>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<jre.level>1.8</jre.level>
+		<jdk.level>1.8</jdk.level>
 	</properties>
 	<dependencies>
 		<!-- more dependencies ... -->
@@ -59,11 +61,28 @@
 			<version>${org.slf4j}</version>
 		</dependency>
 		<dependency>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-testng</artifactId>
-        <version>2.16.0</version> <!-- Use the latest version -->
-        <scope>test</scope>
-    </dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-testng</artifactId>
+			<version>${allure.version}</version> <!-- Use the latest version -->
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-attachments</artifactId>
+			<version>${allure.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.19</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.26</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- more dependencies ... -->
 	</dependencies>
 	<build>
@@ -78,6 +97,24 @@
 						<version>${junit-platform-surefire-provider}</version>
 					</dependency>
 				</dependencies>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.19/aspectjweaver-1.9.19.jar"
+					</argLine>
+					<testFailureIgnore>true</testFailureIgnore>
+					<systemPropertyVariables>
+						<!--Đường dẫn xuất ra report-->
+						<allure.results.directory>target/allure-results</allure.results.directory>
+					</systemPropertyVariables>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>io.qameta.allure</groupId>
@@ -86,8 +123,17 @@
 				version -->
 				<configuration>
 					<reportVersion>${allure.maven.reportversion}</reportVersion>
-					<resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>					
-                	<reportDirectory>${project.build.directory}/allure-reports</reportDirectory>
+					<resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+					<reportDirectory>${project.build.directory}/allure-reports</reportDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${jdk.level}</source>
+					<target>${jdk.level}</target>
 				</configuration>
 			</plugin>
 		</plugins>
